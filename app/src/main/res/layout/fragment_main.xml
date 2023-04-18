@@ -8,42 +8,5 @@
     android:layout_height="match_parent"
     tools:context=".view.MainFragment">
 
-    <androidx.coordinatorlayout.widget.CoordinatorLayout
-        android:layout_width="match_parent"
-        android:layout_height="60dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
-
-        <androidx.appcompat.widget.Toolbar
-            android:layout_width="match_parent"
-            android:layout_height="60dp"
-            android:background="@color/seed"
-            app:navigationIcon="@drawable/baseline_menu_24">
-
-
-            <FrameLayout
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent"
-                android:layout_gravity="center">
-
-                <ImageView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center"
-                    android:src="@drawable/toolbarlogo">
-
-                </ImageView>
-
-
-            </FrameLayout>
-
-        </androidx.appcompat.widget.Toolbar>
-
-    </androidx.coordinatorlayout.widget.CoordinatorLayout>
-
-
-
-
 
 </androidx.constraintlayout.widget.ConstraintLayout>

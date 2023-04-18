@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">TMDb</string>
+    <string name="discover">Keşfet</string>
+    <string name="search">Ara</string>
+    <string name="movies">Filmler</string>
+    <string name="about">Hakkında</string>
+    <string name="searchbar_hint">Filmleri ve dizileri ara</string>
+    <string name="popular_movies">Popüler filmler</string>
+    <string name="top_rated">En çok oylanan filmler</string>
+    <string name="upcoming_movies">Gelecek filmler</string>
+    <string name="latest_movies">Son çıkan filmler</string>
+    <string name="now_playing">Vizyondaki filmler</string>
+    <string name="tv_series">Diziler</string>
+    <string name="popular_series">Popüler diziler</string>
+    <string name="latest_series">Son çıkan diziler</string>
+    <string name="top_rated_series">En çok oylanan diziler</string>
+    <string name="tv_airing_today">Bugün TV\'de ne var?</string>
+    <string name="tv_onair">Şu anda yayında olan diziler</string>
+
+</resources>
