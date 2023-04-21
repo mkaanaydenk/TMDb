@@ -3,6 +3,9 @@ plugins {
     id 'org.jetbrains.kotlin.android'
 }
 apply plugin: "androidx.navigation.safeargs.kotlin"
+apply plugin: 'kotlin-kapt'
+
+
 android {
     namespace 'com.mehmetkaanaydenk.tmdb'
     compileSdk 33
@@ -25,11 +28,11 @@ android {
         }
     }
     compileOptions {
-        sourceCompatibility JavaVersion.VERSION_1_8
-        targetCompatibility JavaVersion.VERSION_1_8
+        sourceCompatibility JavaVersion.VERSION_17
+        targetCompatibility JavaVersion.VERSION_17
     }
     kotlinOptions {
-        jvmTarget = '1.8'
+        jvmTarget = '17'
     }
     buildFeatures{
 
@@ -41,7 +44,7 @@ android {
 def nav_version = "2.5.3"
 def lifeCycleExtensionVersion = '1.1.1'
 def retrofitVersion = '2.9.0'
-def glideVersion = '4.9.0'
+def glideVersion = '4.15.1'
 def preferencesVersion = '1.2.0'
 
 dependencies {
@@ -68,6 +71,7 @@ dependencies {
     implementation 'io.reactivex.rxjava2:rxandroid:2.1.1'
     implementation 'io.reactivex.rxjava2:rxjava:2.2.10'
     implementation "com.github.bumptech.glide:glide:$glideVersion"
+    kapt 'com.github.bumptech.glide:compiler:4.14.2'
     implementation "androidx.preference:preference:$preferencesVersion"
     implementation("androidx.drawerlayout:drawerlayout:1.2.0")
     implementation "androidx.navigation:navigation-fragment-ktx:2.6.0-alpha09"
