@@ -24,6 +24,29 @@
     <string name="tv_not_found">Tv Series Not Found</string>
     <string name="search_null_error">Fill this field.</string>
     <string name="search_error">Server error</string>
+    <string name="include_adult">Include Adult Content</string>
 
+
+    <string name="popularity_asc">Popularity (Ascending)</string>
+    <string name="popularity_desc">Popularity (Descending)</string>
+    <string name="revenue_desc">Revenue (Descending)</string>
+    <string name="release_date_asc">Release Date (Ascending)</string>
+    <string name="release_date_desc">Release Date (Descending)</string>
+    <string name="vote_average_asc">Vote Average (Ascending)</string>
+    <string name="vote_average_desc">Vote Average (Descending)</string>
+    <string name="vote_count_desc">Vote Count (Descending)</string>
+
+    <array name="movie_spinner_array">
+
+        <item>@string/popularity_desc</item>
+        <item>@string/popularity_asc</item>
+        <item>@string/revenue_desc</item>
+        <item>@string/release_date_desc</item>
+        <item>@string/release_date_asc</item>
+        <item>@string/vote_average_desc</item>
+        <item>@string/vote_average_asc</item>
+        <item>@string/vote_count_desc</item>
+
+    </array>
 
 </resources>

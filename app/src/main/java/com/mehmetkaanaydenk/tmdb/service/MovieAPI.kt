@@ -1,6 +1,7 @@
 package com.mehmetkaanaydenk.tmdb.service
 
 import com.mehmetkaanaydenk.tmdb.model.Movie
+import com.mehmetkaanaydenk.tmdb.model.MovieGenres
 import com.mehmetkaanaydenk.tmdb.model.Tv
 import io.reactivex.Single
 import retrofit2.http.GET
@@ -33,5 +34,15 @@ interface MovieAPI {
         @Query("query") query: String
     ): Single<Tv>
 
+    @GET("https://api.themoviedb.org/3/genre/movie/list?api_key=dc1de248e4902fda84ad5dad5068ca5b")
+    fun getMovieGenres(@Query("language") language: String): Single<MovieGenres>
+
+    @GET("discover/movie?api_key=dc1de248e4902fda84ad5dad5068ca5b&include_video=false&page=1")
+    fun getMovieFragmentMovies(
+        @Query("language") language: String,
+        @Query("with_genres") withGenres: String,
+        @Query("sort_by") sortBy: String,
+        @Query("include_adult") includeAdult: Boolean
+    ): Single<Movie>
 
 }
