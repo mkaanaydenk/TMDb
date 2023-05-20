@@ -1,10 +1,12 @@
 package com.mehmetkaanaydenk.tmdb.service
 
 import com.mehmetkaanaydenk.tmdb.model.Movie
+import com.mehmetkaanaydenk.tmdb.model.Tv
 import io.reactivex.Single
 import retrofit2.Retrofit
 import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory
 import retrofit2.converter.gson.GsonConverterFactory
+import java.util.Locale
 
 class MovieAPIService {
 
@@ -17,20 +19,31 @@ class MovieAPIService {
 
 
     fun getPopular22(): Single<Movie> {
-        return movieApi.getPopular22()
+        return movieApi.getPopular22(Locale.getDefault().language)
 
     }
 
     fun getComingSoon(): Single<Movie> {
-        return movieApi.getComingSoon()
+        return movieApi.getComingSoon(Locale.getDefault().language)
     }
 
     fun getHorror(): Single<Movie> {
-        return movieApi.getHorror()
+        return movieApi.getHorror(Locale.getDefault().language)
     }
 
     fun getAnimation(): Single<Movie> {
-        return movieApi.getAnimation()
+        return movieApi.getAnimation(Locale.getDefault().language)
+    }
+
+    fun getMovieByQuery(query: String): Single<Movie> {
+
+        return movieApi.getByQueryMovie(Locale.getDefault().language, query)
+
+    }
+    fun getTvByQuery(query: String): Single<Tv> {
+
+        return movieApi.getByQueryTv(Locale.getDefault().language, query)
+
     }
 
 }

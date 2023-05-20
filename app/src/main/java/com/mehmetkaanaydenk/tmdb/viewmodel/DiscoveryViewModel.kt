@@ -1,8 +1,11 @@
 package com.mehmetkaanaydenk.tmdb.viewmodel
 
 
+import android.app.Application
+import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import com.mehmetkaanaydenk.tmdb.R
 import com.mehmetkaanaydenk.tmdb.model.Movie
 import com.mehmetkaanaydenk.tmdb.service.MovieAPIService
 import io.reactivex.Observable
@@ -19,7 +22,7 @@ import io.reactivex.schedulers.Schedulers
 import java.util.function.BiConsumer
 import java.util.function.BiFunction
 
-class DiscoveryViewModel : ViewModel() {
+class DiscoveryViewModel(application: Application) : AndroidViewModel(application) {
 
 
     private val movieAPIService = MovieAPIService()
@@ -42,49 +45,41 @@ class DiscoveryViewModel : ViewModel() {
             movieAPIService.getHorror()
         ) { t1, t2, t3, t4 ->
 
-            t1.titleName = "Yakında Vizyonda"
+            t1.titleName = getApplication<Application>().getString(R.string.upcoming_movies)
             t1.id = 100
 
-            t2.titleName = "Birbirinden Güzel Animasyonlar"
+            t2.titleName = getApplication<Application>().getString(R.string.beautiful_animations)
             t2.id = 200
 
-            t3.titleName = "2022'nin En İyileri"
+            t3.titleName = getApplication<Application>().getString(R.string.best_of_2022)
             t3.id = 300
 
-            t4.titleName = "Korku Gecesi"
+            t4.titleName = getApplication<Application>().getString(R.string.horror_night)
             t4.id = 400
 
-            movie1 = t1
             movie2 = t2
             movie3 = t3
             movie4 = t4
+            movie1 = t1
 
 
         }.subscribeOn(Schedulers.newThread())
             .observeOn(AndroidSchedulers.mainThread())
-            .subscribeWith(object : SingleObserver<Unit> {
-                override fun onSubscribe(d: Disposable) {
+            .subscribeWith(object : DisposableSingleObserver<Unit>() {
+                override fun onSuccess(t: Unit) {
+                    var arrayList = ArrayList<Movie>()
 
+                    movie2?.let { arrayList.add(it) }
+                    movie3?.let { arrayList.add(it) }
+                    movie4?.let { arrayList.add(it) }
+                    movie1?.let { arrayList.add(it) }
+
+                    movies.value = arrayList
                 }
 
                 override fun onError(e: Throwable) {
                     println(e.localizedMessage)
                 }
-
-                override fun onSuccess(t: Unit) {
-
-                    var arrayList = ArrayList<Movie>()
-
-                    movie1?.let { arrayList.add(it) }
-                    movie2?.let { arrayList.add(it) }
-                    movie3?.let { arrayList.add(it) }
-                    movie4?.let { arrayList.add(it) }
-
-                    movies.value = arrayList
-
-
-                }
-
 
             })
 

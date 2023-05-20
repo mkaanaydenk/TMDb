@@ -32,7 +32,6 @@ class MainFragment : Fragment() {
 
     private lateinit var discoveryParentAdapter: DiscoveryParentAdapter
 
-    private lateinit var movList: ArrayList<Movie>
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -53,7 +52,7 @@ class MainFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        viewModel = ViewModelProviders.of(this).get(DiscoveryViewModel::class.java)
+        viewModel = ViewModelProviders.of(this)[DiscoveryViewModel::class.java]
         viewModel.getDataApi()
 
         observeLiveData()

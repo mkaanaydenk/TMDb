@@ -8,7 +8,9 @@
     <string name="searchbar_hint">Filmleri ve dizileri ara</string>
     <string name="popular_movies">Popüler filmler</string>
     <string name="top_rated">En çok oylanan filmler</string>
-    <string name="upcoming_movies">Gelecek filmler</string>
+    <string name="upcoming_movies">Yakında Vizyonda</string>
+    <string name="beautiful_animations">Birbirinden Güzel Animasyonlar</string>
+    <string name="horror_night">Korku Gecesi</string>
     <string name="latest_movies">Son çıkan filmler</string>
     <string name="now_playing">Vizyondaki filmler</string>
     <string name="tv_series">Diziler</string>
@@ -18,5 +20,9 @@
     <string name="tv_airing_today">Bugün TV\'de ne var?</string>
     <string name="tv_onair">Şu anda yayında olan diziler</string>
     <string name="best_of_2022">2022\'nin en iyileri</string>
+    <string name="movie_not_found">Film Bulunamadı</string>
+    <string name="tv_not_found">Dizi Bulunamadı</string>
+    <string name="search_null_error">Bu alanı doldurun.</string>
+    <string name="search_error">Sunucu hatası</string>
 
 </resources>

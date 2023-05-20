@@ -4,12 +4,12 @@
     android:orientation="vertical"
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
-    android:layout_marginRight="5dp">
+    android:layout_marginEnd="5dp">
 
 
     <com.google.android.material.card.MaterialCardView
         android:id="@+id/card_view"
-        android:layout_width="154dp"
+        android:layout_width="92dp"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
         app:cardCornerRadius="5dp">
@@ -22,7 +22,7 @@
             <ImageView
                 android:id="@+id/card_poster_imageview"
                 android:layout_width="match_parent"
-                android:layout_height="230dp"
+                android:layout_height="140dp"
                 android:src="@drawable/ic_launcher_foreground">
 
 
@@ -39,7 +39,8 @@
                 android:layout_marginBottom="5dp"
                 android:layout_marginLeft="10dp"
                 android:layout_marginRight="10dp"
-                android:maxLines="2">
+                android:maxLines="2"
+                android:ellipsize="end">
 
             </com.google.android.material.textview.MaterialTextView>
 
