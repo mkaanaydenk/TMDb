@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout
+
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="horizontal"
     android:layout_width="match_parent"
@@ -9,7 +10,7 @@
     android:layout_marginTop="10dp">
 
     <ImageView
-        android:id="@+id/movieImageView"
+        android:id="@+id/tvImageView"
         android:layout_width="92dp"
         android:layout_height="140dp"
         android:src="@drawable/ic_launcher_foreground">
@@ -22,7 +23,7 @@
         android:orientation="vertical">
 
         <com.google.android.material.textview.MaterialTextView
-            android:id="@+id/movieNameText"
+            android:id="@+id/tvNameText"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginStart="10dp"
@@ -35,7 +36,7 @@
         </com.google.android.material.textview.MaterialTextView>
 
         <com.google.android.material.textview.MaterialTextView
-            android:id="@+id/movieReleaseYearText"
+            android:id="@+id/tvReleaseYearText"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginStart="10dp"
@@ -48,7 +49,7 @@
         </com.google.android.material.textview.MaterialTextView>
 
         <com.google.android.material.textview.MaterialTextView
-            android:id="@+id/movieOverviewText"
+            android:id="@+id/tvOverviewText"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_marginStart="10dp"

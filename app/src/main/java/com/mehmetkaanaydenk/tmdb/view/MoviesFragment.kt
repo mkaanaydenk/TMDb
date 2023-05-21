@@ -8,17 +8,13 @@ import android.view.ViewGroup
 import android.widget.AdapterView
 import android.widget.AdapterView.OnItemSelectedListener
 import android.widget.ArrayAdapter
-import android.widget.Toast
 import androidx.core.view.ViewCompat
-import androidx.core.view.get
 import androidx.lifecycle.ViewModelProviders
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.google.android.material.chip.Chip
-import com.google.android.material.chip.ChipGroup
 import com.mehmetkaanaydenk.tmdb.R
 import com.mehmetkaanaydenk.tmdb.adapter.MovieAdapter
-import com.mehmetkaanaydenk.tmdb.databinding.FragmentMainBinding
 import com.mehmetkaanaydenk.tmdb.databinding.FragmentMoviesBinding
 import com.mehmetkaanaydenk.tmdb.model.MovieGenre
 import com.mehmetkaanaydenk.tmdb.viewmodel.MoviesFragmentModel
@@ -61,15 +57,19 @@ class MoviesFragment : Fragment() {
 
         }
 
-        val sortArray = resources.getStringArray(R.array.movie_spinner_array)
+        val sortArray = resources.getStringArray(R.array.spinner_array)
 
-        val arrayAdapter : ArrayAdapter<*> = ArrayAdapter<Any?>(requireContext(),android.R.layout.simple_spinner_dropdown_item,sortArray)
+        val arrayAdapter: ArrayAdapter<*> = ArrayAdapter<Any?>(
+            requireContext(),
+            android.R.layout.simple_spinner_dropdown_item,
+            sortArray
+        )
         binding.movieSpinner.adapter = arrayAdapter
 
-        binding.movieSpinner.onItemSelectedListener = object: OnItemSelectedListener{
+        binding.movieSpinner.onItemSelectedListener = object : OnItemSelectedListener {
             override fun onItemSelected(p0: AdapterView<*>?, p1: View?, p2: Int, p3: Long) {
 
-                when(p2){
+                when (p2) {
 
                     0 -> viewModel.setSort("popularity.desc")
                     1 -> viewModel.setSort("popularity.asc")
@@ -95,13 +95,13 @@ class MoviesFragment : Fragment() {
             viewModel.setAdult(b)
 
         }
-        viewModel.includeAdult.observe(viewLifecycleOwner){includeAdult ->
+        viewModel.includeAdult.observe(viewLifecycleOwner) { includeAdult ->
 
-            viewModel.selectedSortBy.observe(viewLifecycleOwner){sortBy ->
+            viewModel.selectedSortBy.observe(viewLifecycleOwner) { sortBy ->
 
-                viewModel.selectedGenreId.observe(viewLifecycleOwner){
+                viewModel.selectedGenreId.observe(viewLifecycleOwner) {
 
-                    viewModel.getMovies(it,sortBy,includeAdult)
+                    viewModel.getMovies(it, sortBy, includeAdult)
                     observeMovies()
                 }
             }
@@ -112,36 +112,36 @@ class MoviesFragment : Fragment() {
     }
 
 
-    fun observeMovies(){
+    fun observeMovies() {
 
-        viewModel.movies.observe(viewLifecycleOwner){
+        viewModel.movies.observe(viewLifecycleOwner) {
 
             adapter = MovieAdapter(it)
-            val manager: RecyclerView.LayoutManager= LinearLayoutManager(context)
+            val manager: RecyclerView.LayoutManager = LinearLayoutManager(context)
             binding.movieRecyclerView.layoutManager = manager
             binding.movieRecyclerView.adapter = adapter
 
         }
-        viewModel.progressBar.observe(viewLifecycleOwner){
-            if (it){
+        viewModel.progressBar.observe(viewLifecycleOwner) {
+            if (it) {
                 binding.movieProgressBar.visibility = View.VISIBLE
-            }else{
+            } else {
                 binding.movieProgressBar.visibility = View.GONE
             }
         }
-        viewModel.movieError.observe(viewLifecycleOwner){
+        viewModel.movieError.observe(viewLifecycleOwner) {
 
-            if (it){
+            if (it) {
                 binding.movieError.visibility = View.VISIBLE
-            }else{
+            } else {
                 binding.movieError.visibility = View.GONE
             }
 
         }
-        viewModel.recyclerView.observe(viewLifecycleOwner){
-            if (it){
+        viewModel.recyclerView.observe(viewLifecycleOwner) {
+            if (it) {
                 binding.movieRecyclerView.visibility = View.VISIBLE
-            }else{
+            } else {
                 binding.movieRecyclerView.visibility = View.INVISIBLE
             }
         }
@@ -149,9 +149,9 @@ class MoviesFragment : Fragment() {
 
     }
 
-    private fun observeGenres(){
+    private fun observeGenres() {
 
-        viewModel.movieGenres.observe(viewLifecycleOwner){
+        viewModel.movieGenres.observe(viewLifecycleOwner) {
 
             setChips(it)
 
@@ -159,11 +159,15 @@ class MoviesFragment : Fragment() {
 
     }
 
-    private fun setChips(genreList: List<MovieGenre>){
+    private fun setChips(genreList: List<MovieGenre>) {
 
         genreList.forEach {
 
-            val chip = requireActivity().layoutInflater.inflate(R.layout.chip_layout,binding.movieChipGroup, false) as Chip
+            val chip = requireActivity().layoutInflater.inflate(
+                R.layout.chip_layout,
+                binding.movieChipGroup,
+                false
+            ) as Chip
             chip.text = it.name
             chip.id = ViewCompat.generateViewId()
             chip.tag = it.id

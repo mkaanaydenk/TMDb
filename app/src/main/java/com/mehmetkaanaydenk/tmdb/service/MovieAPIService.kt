@@ -3,6 +3,7 @@ package com.mehmetkaanaydenk.tmdb.service
 import com.mehmetkaanaydenk.tmdb.model.Movie
 import com.mehmetkaanaydenk.tmdb.model.MovieGenres
 import com.mehmetkaanaydenk.tmdb.model.Tv
+import com.mehmetkaanaydenk.tmdb.model.TvGenres
 import io.reactivex.Single
 import retrofit2.Retrofit
 import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory
@@ -53,10 +54,22 @@ class MovieAPIService {
 
     }
 
+    fun getTvGenres(): Single<TvGenres>{
+        return movieApi.getTvGenres(Locale.getDefault().language)
+    }
+
     fun getMovieFragmentMovies(withGenre: String, sortBy: String, includeAdult: Boolean):Single<Movie>{
 
         return movieApi.getMovieFragmentMovies(Locale.getDefault().language,withGenre,sortBy,includeAdult)
 
     }
+
+    fun getTvFragmentTvs(withGenre: String,sortBy: String,includeAdult: Boolean):Single<Tv>{
+
+        return movieApi.getTvFragmentTvs(Locale.getDefault().language,withGenre,sortBy,includeAdult)
+
+    }
+
+
 
 }

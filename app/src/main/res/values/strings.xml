@@ -36,7 +36,7 @@
     <string name="vote_average_desc">Vote Average (Descending)</string>
     <string name="vote_count_desc">Vote Count (Descending)</string>
 
-    <array name="movie_spinner_array">
+    <array name="spinner_array">
 
         <item>@string/popularity_desc</item>
         <item>@string/popularity_asc</item>

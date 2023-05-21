@@ -2,26 +2,26 @@ package com.mehmetkaanaydenk.tmdb.viewmodel
 
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import com.mehmetkaanaydenk.tmdb.model.Movie
-import com.mehmetkaanaydenk.tmdb.model.MovieGenre
-import com.mehmetkaanaydenk.tmdb.model.MovieGenres
-import com.mehmetkaanaydenk.tmdb.model.ResultMovie
+import com.mehmetkaanaydenk.tmdb.model.ResultTv
+import com.mehmetkaanaydenk.tmdb.model.Tv
+import com.mehmetkaanaydenk.tmdb.model.TvGenre
+import com.mehmetkaanaydenk.tmdb.model.TvGenres
 import com.mehmetkaanaydenk.tmdb.service.MovieAPIService
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.CompositeDisposable
 import io.reactivex.observers.DisposableSingleObserver
 import io.reactivex.schedulers.Schedulers
 
-class MoviesFragmentModel: ViewModel() {
+class TvFragmentModel : ViewModel() {
 
     private val disposable = CompositeDisposable()
     private val movieAPIService = MovieAPIService()
 
-    val movies = MutableLiveData<List<ResultMovie>>()
+    val tvSeries = MutableLiveData<List<ResultTv>>()
 
-    val movieGenres = MutableLiveData<List<MovieGenre>>()
+    val tvGenres = MutableLiveData<List<TvGenre>>()
 
-    val selectedGenreId = MutableLiveData<String>("28")
+    val selectedGenreId = MutableLiveData<String>("10759")
 
     val selectedSortBy = MutableLiveData<String>()
 
@@ -29,66 +29,69 @@ class MoviesFragmentModel: ViewModel() {
 
     val progressBar = MutableLiveData<Boolean>()
 
-    val movieError = MutableLiveData<Boolean>()
+    val tvError = MutableLiveData<Boolean>()
 
     val recyclerView = MutableLiveData<Boolean>()
 
-
-    fun setGenre(genre: String){
+    fun setGenre(genre: String) {
 
         selectedGenreId.value = genre
 
     }
 
-    fun setSort(sortBy: String){
+    fun setSort(sortBy: String) {
 
         selectedSortBy.value = sortBy
 
     }
 
-    fun setAdult(adult: Boolean){
+    fun setAdult(adult: Boolean) {
 
         includeAdult.value = adult
 
     }
 
-    fun getMovies(genre: String, sort: String, includeAdult: Boolean){
+    fun getTvs(genre: String, sort: String, includeAdult: Boolean) {
 
         progressBar.value = true
 
         disposable.add(
-            movieAPIService.getMovieFragmentMovies(genre,sort,includeAdult)
+
+            movieAPIService.getTvFragmentTvs(genre, sort, includeAdult)
                 .subscribeOn(Schedulers.newThread())
                 .observeOn(AndroidSchedulers.mainThread())
-                .subscribeWith(object : DisposableSingleObserver<Movie>(){
-                    override fun onSuccess(t: Movie) {
+                .subscribeWith(object : DisposableSingleObserver<Tv>() {
+                    override fun onSuccess(t: Tv) {
                         progressBar.value = false
-                        movieError.value = false
+                        tvError.value = false
                         recyclerView.value = true
-                        movies.value = t.resultMovies
+                        tvSeries.value = t.resultTvs
                     }
 
                     override fun onError(e: Throwable) {
                         progressBar.value = false
                         recyclerView.value = false
-                        movieError.value = true
+                        tvError.value = true
                     }
 
 
                 })
+
         )
 
     }
 
-    fun getGenres(){
+
+    fun getGenres() {
 
         disposable.add(
-            movieAPIService.getMovieGenres()
+
+            movieAPIService.getTvGenres()
                 .subscribeOn(Schedulers.newThread())
                 .observeOn(AndroidSchedulers.mainThread())
-                .subscribeWith(object : DisposableSingleObserver<MovieGenres>(){
-                    override fun onSuccess(t: MovieGenres) {
-                        movieGenres.value = t.movieGenres
+                .subscribeWith(object : DisposableSingleObserver<TvGenres>() {
+                    override fun onSuccess(t: TvGenres) {
+                        tvGenres.value = t.tvGenres
                     }
 
                     override fun onError(e: Throwable) {
@@ -97,6 +100,7 @@ class MoviesFragmentModel: ViewModel() {
 
 
                 })
+
         )
 
     }
