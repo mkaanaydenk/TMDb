@@ -12,7 +12,7 @@ import io.reactivex.disposables.CompositeDisposable
 import io.reactivex.observers.DisposableSingleObserver
 import io.reactivex.schedulers.Schedulers
 
-class MoviesFragmentModel: ViewModel() {
+class MoviesFragmentModel : ViewModel() {
 
     private val disposable = CompositeDisposable()
     private val movieAPIService = MovieAPIService()
@@ -34,33 +34,37 @@ class MoviesFragmentModel: ViewModel() {
     val recyclerView = MutableLiveData<Boolean>()
 
 
-    fun setGenre(genre: String){
+    fun setGenre(genre: String) {
 
         selectedGenreId.value = genre
 
     }
 
-    fun setSort(sortBy: String){
+    fun setSort(sortBy: String) {
 
         selectedSortBy.value = sortBy
 
     }
 
-    fun setAdult(adult: Boolean){
+    fun setAdult(adult: Boolean) {
 
         includeAdult.value = adult
 
     }
 
-    fun getMovies(genre: String, sort: String, includeAdult: Boolean){
+    fun getMovies() {
 
         progressBar.value = true
 
         disposable.add(
-            movieAPIService.getMovieFragmentMovies(genre,sort,includeAdult)
+            movieAPIService.getMovieFragmentMovies(
+                selectedGenreId.value!!,
+                selectedSortBy.value!!,
+                includeAdult.value!!
+            )
                 .subscribeOn(Schedulers.newThread())
                 .observeOn(AndroidSchedulers.mainThread())
-                .subscribeWith(object : DisposableSingleObserver<Movie>(){
+                .subscribeWith(object : DisposableSingleObserver<Movie>() {
                     override fun onSuccess(t: Movie) {
                         progressBar.value = false
                         movieError.value = false
@@ -80,13 +84,13 @@ class MoviesFragmentModel: ViewModel() {
 
     }
 
-    fun getGenres(){
+    fun getGenres() {
 
         disposable.add(
             movieAPIService.getMovieGenres()
                 .subscribeOn(Schedulers.newThread())
                 .observeOn(AndroidSchedulers.mainThread())
-                .subscribeWith(object : DisposableSingleObserver<MovieGenres>(){
+                .subscribeWith(object : DisposableSingleObserver<MovieGenres>() {
                     override fun onSuccess(t: MovieGenres) {
                         movieGenres.value = t.movieGenres
                     }

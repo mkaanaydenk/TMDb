@@ -51,13 +51,13 @@ class TvFragmentModel : ViewModel() {
 
     }
 
-    fun getTvs(genre: String, sort: String, includeAdult: Boolean) {
+    fun getTvs() {
 
         progressBar.value = true
 
         disposable.add(
 
-            movieAPIService.getTvFragmentTvs(genre, sort, includeAdult)
+            movieAPIService.getTvFragmentTvs(selectedGenreId.value!!, selectedSortBy.value!!, includeAdult.value!!)
                 .subscribeOn(Schedulers.newThread())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribeWith(object : DisposableSingleObserver<Tv>() {

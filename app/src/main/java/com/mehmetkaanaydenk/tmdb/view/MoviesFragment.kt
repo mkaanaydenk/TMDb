@@ -54,6 +54,7 @@ class MoviesFragment : Fragment() {
         binding.movieChipGroup.setOnCheckedChangeListener { group, checkedId ->
 
             viewModel.setGenre(group.findViewById<Chip>(checkedId).tag.toString())
+            viewModel.getMovies()
 
         }
 
@@ -81,7 +82,7 @@ class MoviesFragment : Fragment() {
                     7 -> viewModel.setSort("vote_count.desc")
 
                 }
-
+                viewModel.getMovies()
             }
 
             override fun onNothingSelected(p0: AdapterView<*>?) {
@@ -93,22 +94,11 @@ class MoviesFragment : Fragment() {
         binding.adultCheckBox.setOnCheckedChangeListener { _, b ->
 
             viewModel.setAdult(b)
-
-        }
-        viewModel.includeAdult.observe(viewLifecycleOwner) { includeAdult ->
-
-            viewModel.selectedSortBy.observe(viewLifecycleOwner) { sortBy ->
-
-                viewModel.selectedGenreId.observe(viewLifecycleOwner) {
-
-                    viewModel.getMovies(it, sortBy, includeAdult)
-                    observeMovies()
-                }
-            }
+            viewModel.getMovies()
 
         }
 
-
+        observeMovies()
     }
 
 
