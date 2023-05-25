@@ -2,11 +2,13 @@ package com.mehmetkaanaydenk.tmdb.adapter
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import androidx.navigation.findNavController
 import androidx.recyclerview.widget.RecyclerView
 import com.mehmetkaanaydenk.tmdb.databinding.RecyclerCardBinding
 import com.mehmetkaanaydenk.tmdb.model.ResultMovie
 import com.mehmetkaanaydenk.tmdb.util.downloadUrl
 import com.mehmetkaanaydenk.tmdb.util.placeHolderProgressBar
+import com.mehmetkaanaydenk.tmdb.view.MainFragmentDirections
 
 class CardAdapter(val movieList: List<ResultMovie>) :
     RecyclerView.Adapter<CardAdapter.CardHolder>() {
@@ -37,6 +39,13 @@ class CardAdapter(val movieList: List<ResultMovie>) :
             IMAGE_BASE_URL + movieList[position].posterPath,
             placeHolderProgressBar(holder.itemView.context)
         )
+
+        holder.itemView.setOnClickListener {
+
+            val action = MainFragmentDirections.actionMainFragmentToDetailsFragment()
+            it.findNavController().navigate(action)
+
+        }
 
     }
 }

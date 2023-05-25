@@ -2,6 +2,8 @@ package com.mehmetkaanaydenk.tmdb.view
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.view.View
+import androidx.appcompat.content.res.AppCompatResources
 import androidx.navigation.NavController
 import androidx.navigation.findNavController
 import androidx.navigation.ui.setupWithNavController
@@ -23,5 +25,21 @@ class MainActivity : AppCompatActivity() {
         bottomNavigationView = binding.bottomNavView
         navController = findNavController(R.id.fragmentContainerView)
         bottomNavigationView.setupWithNavController(navController)
+
+        navController.addOnDestinationChangedListener { controller, destination, arguments ->
+
+            if (destination.id == R.id.detailsFragment) {
+                bottomNavigationView.visibility = View.GONE
+                binding.topAppBar.navigationIcon =
+                    AppCompatResources.getDrawable(this, R.drawable.baseline_arrow_back_ios_24)
+            } else {
+                bottomNavigationView.visibility = View.VISIBLE
+                binding.topAppBar.navigationIcon = null
+            }
+
+        }
+
     }
+
+
 }
