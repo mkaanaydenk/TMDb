@@ -25,6 +25,10 @@
     <string name="search_null_error">Bu alanı doldurun.</string>
     <string name="search_error">Sunucu hatası</string>
     <string name="include_adult">Yetişkin İçerikleri Dahil Et</string>
+    <string name="directors">Yönetmen(ler)</string>
+    <string name="producers">Yapımcı(lar)</string>
+    <string name="cast">Oyuncular</string>
+    <string name="trailer">Fragman(lar)</string>
 
     <string name="popularity_asc">Popülerlik (En Düşük)</string>
     <string name="popularity_desc">Popülerlik (En Yüksek)</string>

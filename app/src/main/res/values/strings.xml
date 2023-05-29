@@ -25,6 +25,10 @@
     <string name="search_null_error">Fill this field.</string>
     <string name="search_error">Server error</string>
     <string name="include_adult">Include Adult Content</string>
+    <string name="directors">Director(s)</string>
+    <string name="producers">Producer(s)</string>
+    <string name="cast">Cast</string>
+    <string name="trailer">Trailer(s)</string>
 
 
     <string name="popularity_asc">Popularity (Ascending)</string>
