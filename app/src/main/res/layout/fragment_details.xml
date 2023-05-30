@@ -5,8 +5,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".view.DetailsFragment"
-    android:orientation="vertical">
+    android:orientation="vertical"
+    tools:context=".view.DetailsFragment">
 
     <ScrollView
         android:id="@+id/scroll_view"
@@ -22,10 +22,13 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="5dp"
+                android:layout_marginTop="5dp"
                 android:layout_marginEnd="5dp"
-                android:textSize="24sp"
-                android:textStyle="bold"
-                android:text="Godfather">
+                android:ellipsize="end"
+                android:maxLines="1"
+                android:text="Godfather"
+                android:textSize="22sp"
+                android:textStyle="bold">
 
             </TextView>
 
@@ -33,31 +36,32 @@
                 android:id="@+id/imageView"
                 android:layout_width="match_parent"
                 android:layout_height="250dp"
-                android:layout_below="@id/name_text"
-                android:layout_marginTop="5dp">
+                android:layout_below="@id/name_text">
+
             </ImageView>
 
             <TextView
                 android:id="@+id/genre_text"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_below="@id/imageView"
                 android:layout_marginStart="5dp"
                 android:layout_marginEnd="5dp"
-                android:textSize="20sp"
                 android:text="Drama"
-                android:layout_below="@id/imageView">
+                android:textSize="20sp">
 
             </TextView>
+
             <TextView
                 android:id="@+id/year_text"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_below="@id/imageView"
                 android:layout_marginStart="5dp"
                 android:layout_marginEnd="5dp"
-                android:textSize="20sp"
+                android:layout_toEndOf="@id/genre_text"
                 android:text="1972"
-                android:layout_below="@id/imageView"
-                android:layout_toEndOf="@id/genre_text">
+                android:textSize="20sp">
 
             </TextView>
 
@@ -65,12 +69,12 @@
                 android:id="@+id/duration_text"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_below="@id/imageView"
                 android:layout_marginStart="5dp"
                 android:layout_marginEnd="5dp"
-                android:textSize="20sp"
+                android:layout_toEndOf="@id/year_text"
                 android:text="2 hours, 10 minutes"
-                android:layout_below="@id/imageView"
-                android:layout_toEndOf="@id/year_text">
+                android:textSize="20sp">
 
             </TextView>
 
@@ -78,27 +82,27 @@
                 android:id="@+id/overviewText"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="5dp"
-                android:layout_marginEnd="5dp"
-                android:layout_marginTop="10dp"
-                android:textSize="20sp"
                 android:layout_below="@id/genre_text"
-                android:text="">
+                android:layout_marginStart="5dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginEnd="5dp"
+                android:text=""
+                android:textSize="20sp">
 
             </TextView>
 
             <RatingBar
                 android:id="@+id/ratingBar"
                 style="@style/Widget.AppCompat.RatingBar.Small"
-                android:isIndicator="true"
-                android:stepSize="0.5"
-                android:numStars="10"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="10dp"
+                android:layout_below="@id/overviewText"
                 android:layout_marginStart="5dp"
+                android:layout_marginTop="10dp"
                 android:layout_marginEnd="5dp"
-                android:layout_below="@id/overviewText">
+                android:isIndicator="true"
+                android:numStars="10"
+                android:stepSize="0.5">
 
             </RatingBar>
 
@@ -107,9 +111,9 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_below="@id/overviewText"
-                android:layout_toEndOf="@id/ratingBar"
                 android:layout_marginStart="5dp"
                 android:layout_marginTop="10dp"
+                android:layout_toEndOf="@id/ratingBar"
                 android:text="5/10"
                 android:textSize="12sp">
 
@@ -117,21 +121,21 @@
 
             <LinearLayout
                 android:id="@+id/titleLayout"
-                android:orientation="horizontal"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_below="@id/ratingBar"
                 android:layout_marginTop="10dp"
-                android:layout_below="@id/ratingBar">
+                android:orientation="horizontal">
 
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="5dp"
                     android:layout_marginEnd="5dp"
-                    android:textSize="18sp"
-                    android:textStyle="bold"
+                    android:layout_weight="1"
                     android:text="@string/directors"
-                    android:layout_weight="1">
+                    android:textSize="18sp"
+                    android:textStyle="bold">
 
                 </TextView>
 
@@ -141,10 +145,10 @@
                     android:layout_height="wrap_content"
                     android:layout_marginStart="5dp"
                     android:layout_marginEnd="5dp"
-                    android:textSize="18sp"
-                    android:textStyle="bold"
+                    android:layout_weight="1"
                     android:text="@string/producers"
-                    android:layout_weight="1">
+                    android:textSize="18sp"
+                    android:textStyle="bold">
 
                 </TextView>
 
@@ -152,12 +156,13 @@
 
             <LinearLayout
                 android:id="@+id/recyclerViews_layout"
-                android:orientation="horizontal"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_below="@id/titleLayout">
+                android:layout_below="@id/titleLayout"
+                android:orientation="horizontal">
 
                 <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/directorRecyclerView"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="5dp"
@@ -167,6 +172,7 @@
                 </androidx.recyclerview.widget.RecyclerView>
 
                 <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/producerRecyclerView"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="5dp"
@@ -181,11 +187,11 @@
                 android:id="@+id/cast_text"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="5dp"
-                android:layout_marginEnd="5dp"
-                android:layout_marginTop="10dp"
-                android:text="@string/cast"
                 android:layout_below="@id/recyclerViews_layout"
+                android:layout_marginStart="5dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginEnd="5dp"
+                android:text="@string/cast"
                 android:textSize="20sp"
                 android:textStyle="bold">
 
@@ -195,10 +201,10 @@
                 android:id="@+id/castRecyclerView"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="5dp"
+                android:layout_below="@id/cast_text"
                 android:layout_marginStart="5dp"
-                android:layout_marginEnd="5dp"
-                android:layout_below="@id/cast_text">
+                android:layout_marginTop="5dp"
+                android:layout_marginEnd="5dp">
 
             </androidx.recyclerview.widget.RecyclerView>
 
@@ -206,11 +212,11 @@
                 android:id="@+id/trailer_text"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="5dp"
-                android:layout_marginEnd="5dp"
-                android:layout_marginTop="10dp"
-                android:text="@string/trailer"
                 android:layout_below="@id/castRecyclerView"
+                android:layout_marginStart="5dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginEnd="5dp"
+                android:text="@string/trailer"
                 android:textSize="20sp"
                 android:textStyle="bold">
 
@@ -220,10 +226,10 @@
                 android:id="@+id/trailerRecyclerView"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="5dp"
+                android:layout_below="@id/trailer_text"
                 android:layout_marginStart="5dp"
-                android:layout_marginEnd="5dp"
-                android:layout_below="@id/trailer_text">
+                android:layout_marginTop="5dp"
+                android:layout_marginEnd="5dp">
 
             </androidx.recyclerview.widget.RecyclerView>
 

@@ -1,6 +1,8 @@
 package com.mehmetkaanaydenk.tmdb.service
 
+import com.mehmetkaanaydenk.tmdb.model.Credit
 import com.mehmetkaanaydenk.tmdb.model.Movie
+import com.mehmetkaanaydenk.tmdb.model.MovieDetail
 import com.mehmetkaanaydenk.tmdb.model.MovieGenres
 import com.mehmetkaanaydenk.tmdb.model.Tv
 import com.mehmetkaanaydenk.tmdb.model.TvGenres
@@ -70,6 +72,17 @@ class MovieAPIService {
 
     }
 
+    fun getMovieDetail(movieId: Int):Single<MovieDetail>{
+
+        return movieApi.getMovieDetail(movieId, Locale.getDefault().language)
+
+    }
+
+    fun getMovieCredit(movieId: Int):Single<Credit>{
+
+        return movieApi.getMovieCredits(movieId,Locale.getDefault().language)
+
+    }
 
 
 }

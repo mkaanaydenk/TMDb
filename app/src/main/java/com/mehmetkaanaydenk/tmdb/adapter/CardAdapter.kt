@@ -42,7 +42,7 @@ class CardAdapter(val movieList: List<ResultMovie>) :
 
         holder.itemView.setOnClickListener {
 
-            val action = MainFragmentDirections.actionMainFragmentToDetailsFragment()
+            val action = MainFragmentDirections.actionMainFragmentToDetailsFragment(movieList[position].id)
             it.findNavController().navigate(action)
 
         }

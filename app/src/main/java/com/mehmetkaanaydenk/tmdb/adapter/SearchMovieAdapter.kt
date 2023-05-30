@@ -2,12 +2,14 @@ package com.mehmetkaanaydenk.tmdb.adapter
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import androidx.navigation.findNavController
 import androidx.recyclerview.widget.RecyclerView
 import com.mehmetkaanaydenk.tmdb.databinding.FragmentSearchMovieTabBinding
 import com.mehmetkaanaydenk.tmdb.databinding.SearchMovieRecyclerRowBinding
 import com.mehmetkaanaydenk.tmdb.model.ResultMovie
 import com.mehmetkaanaydenk.tmdb.util.downloadUrl
 import com.mehmetkaanaydenk.tmdb.util.placeHolderProgressBar
+import com.mehmetkaanaydenk.tmdb.view.SearchFragmentDirections
 
 class SearchMovieAdapter(val movieList: List<ResultMovie>): RecyclerView.Adapter<SearchMovieAdapter.MovieHolder>() {
 
@@ -33,5 +35,12 @@ class SearchMovieAdapter(val movieList: List<ResultMovie>): RecyclerView.Adapter
             placeHolderProgressBar(holder.itemView.context)
         )
         holder.binding.movieOverviewText.text = movieList[position].overview
+
+        holder.itemView.setOnClickListener {
+
+            val action = SearchFragmentDirections.actionSearchFragmentToDetailsFragment(movieList[position].id)
+            it.findNavController().navigate(action)
+
+        }
     }
 }
