@@ -3,15 +3,14 @@ package com.mehmetkaanaydenk.tmdb.adapter
 import android.content.ActivityNotFoundException
 import android.content.Intent
 import android.net.Uri
+import android.provider.MediaStore.Video
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.mehmetkaanaydenk.tmdb.databinding.DetailTrailerRowBinding
-import com.mehmetkaanaydenk.tmdb.model.Video
-import com.mehmetkaanaydenk.tmdb.model.Videos
 
-class DetailTrailerAdapter(val trailerList: List<Video>):RecyclerView.Adapter<DetailTrailerAdapter.TrailerHolder>() {
-    class TrailerHolder(val binding: DetailTrailerRowBinding):RecyclerView.ViewHolder(binding.root) {
+class TvDetailTrailerAdapter(val trailerList: List<com.mehmetkaanaydenk.tmdb.model.Video>): RecyclerView.Adapter<TvDetailTrailerAdapter.TrailerHolder>() {
+    class TrailerHolder(val binding: DetailTrailerRowBinding): RecyclerView.ViewHolder(binding.root) {
 
     }
 
@@ -43,8 +42,6 @@ class DetailTrailerAdapter(val trailerList: List<Video>):RecyclerView.Adapter<De
             }
 
         }
-
-
 
     }
 }

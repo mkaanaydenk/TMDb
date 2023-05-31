@@ -29,6 +29,10 @@
     <string name="producers">Producer(s)</string>
     <string name="cast">Cast</string>
     <string name="trailer">Trailer(s)</string>
+    <string name="creator">Creator(s)</string>
+    <string name="seasons">Season(s)</string>
+    <string name="season">&#160;Season</string>
+    <string name="episodes">&#160;Episodes</string>
 
 
     <string name="popularity_asc">Popularity (Ascending)</string>
@@ -52,5 +56,6 @@
         <item>@string/vote_count_desc</item>
 
     </array>
+
 
 </resources>

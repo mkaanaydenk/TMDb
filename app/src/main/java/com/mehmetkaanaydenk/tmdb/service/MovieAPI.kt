@@ -5,6 +5,7 @@ import com.mehmetkaanaydenk.tmdb.model.Movie
 import com.mehmetkaanaydenk.tmdb.model.MovieDetail
 import com.mehmetkaanaydenk.tmdb.model.MovieGenres
 import com.mehmetkaanaydenk.tmdb.model.Tv
+import com.mehmetkaanaydenk.tmdb.model.TvDetail
 import com.mehmetkaanaydenk.tmdb.model.TvGenres
 import io.reactivex.Single
 import retrofit2.http.GET
@@ -12,6 +13,7 @@ import retrofit2.http.Path
 import retrofit2.http.Query
 
 val API_KEY = "dc1de248e4902fda84ad5dad5068ca5b"
+
 interface MovieAPI {
 
     //base url https://api.themoviedb.org/3/
@@ -74,4 +76,15 @@ interface MovieAPI {
         @Query("language") language: String
     ): Single<Credit>
 
+    @GET("tv/{series_id}?api_key=dc1de248e4902fda84ad5dad5068ca5b&append_to_response=videos")
+    fun getTvDetail(
+        @Path("series_id") tvId: Int,
+        @Query("language") language: String
+    ): Single<TvDetail>
+
+    @GET("tv/{series_id}/credits?api_key=dc1de248e4902fda84ad5dad5068ca5b")
+    fun getTvCredits(
+        @Path("series_id") tvId: Int,
+        @Query("language") language: String
+    ): Single<Credit>
 }

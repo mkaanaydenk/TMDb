@@ -29,6 +29,10 @@
     <string name="producers">Yapımcı(lar)</string>
     <string name="cast">Oyuncular</string>
     <string name="trailer">Fragman(lar)</string>
+    <string name="creator">Yaratıcı(lar)</string>
+    <string name="seasons">Sezon(lar)</string>
+    <string name="season">&#160;Sezon</string>
+    <string name="episodes">&#160;Bölüm</string>
 
     <string name="popularity_asc">Popülerlik (En Düşük)</string>
     <string name="popularity_desc">Popülerlik (En Yüksek)</string>

@@ -42,5 +42,8 @@ class SearchMovieAdapter(val movieList: List<ResultMovie>): RecyclerView.Adapter
             it.findNavController().navigate(action)
 
         }
+
+        println(movieList[position].id)
+
     }
 }

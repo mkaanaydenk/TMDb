@@ -34,14 +34,14 @@ class SearchMovieTabFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        _binding = FragmentSearchMovieTabBinding.inflate(inflater,container,false)
+        _binding = FragmentSearchMovieTabBinding.inflate(inflater, container, false)
         val view = binding.root
         return view
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        viewModel.query.observe(viewLifecycleOwner){
+        viewModel.query.observe(viewLifecycleOwner) {
 
             viewModel.getMovies(it)
 
@@ -49,39 +49,44 @@ class SearchMovieTabFragment : Fragment() {
         observeData()
     }
 
-    private fun observeData(){
+    private fun observeData() {
 
-        viewModel.movies.observe(viewLifecycleOwner){
+        viewModel.movies.observe(viewLifecycleOwner) {
             adapter = SearchMovieAdapter(it)
             val manager: RecyclerView.LayoutManager = LinearLayoutManager(context)
             binding.movieTabRecyclerView.layoutManager = manager
             binding.movieTabRecyclerView.adapter = adapter
+            binding.movieTabRecyclerView.visibility = View.VISIBLE
         }
 
-        viewModel.movieLoading.observe(viewLifecycleOwner){
+        viewModel.movieLoading.observe(viewLifecycleOwner) {
 
-            if (it){
+            if (it) {
                 binding.movieProgressBar.visibility = View.VISIBLE
-            }else{
+            } else {
                 binding.movieProgressBar.visibility = View.GONE
             }
 
         }
 
-        viewModel.movieNotFound.observe(viewLifecycleOwner){
-            if (it){
+        viewModel.movieNotFound.observe(viewLifecycleOwner) {
+            if (it) {
                 binding.movieTabNotFoundText.visibility = View.VISIBLE
-            }else{
+                binding.movieTabRecyclerView.visibility = View.GONE
+            } else {
                 binding.movieTabNotFoundText.visibility = View.GONE
+                binding.movieTabRecyclerView.visibility = View.VISIBLE
             }
         }
 
-        viewModel.movieError.observe(viewLifecycleOwner){
+        viewModel.movieError.observe(viewLifecycleOwner) {
 
-            if (it){
+            if (it) {
                 binding.movieTabErrorText.visibility = View.VISIBLE
-            }else{
+                binding.movieTabRecyclerView.visibility = View.GONE
+            } else {
                 binding.movieTabErrorText.visibility = View.GONE
+                binding.movieTabRecyclerView.visibility = View.VISIBLE
             }
 
         }

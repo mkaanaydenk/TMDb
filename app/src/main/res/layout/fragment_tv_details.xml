@@ -6,7 +6,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context=".view.DetailsFragment">
+    tools:context=".view.TvDetailsFragment">
 
     <ScrollView
         android:id="@+id/scroll_view"
@@ -26,7 +26,7 @@
                 android:layout_marginEnd="5dp"
                 android:ellipsize="end"
                 android:maxLines="1"
-                android:text="Godfather"
+                android:text="Game Of Thrones"
                 android:textSize="22sp"
                 android:textStyle="bold">
 
@@ -55,7 +55,7 @@
             </TextView>
 
             <TextView
-                android:id="@+id/year_text"
+                android:id="@+id/first_air_year"
                 style="@style/textViewBorder"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -70,7 +70,7 @@
             </TextView>
 
             <TextView
-                android:id="@+id/duration_text"
+                android:id="@+id/total_season"
                 style="@style/textViewBorder"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -78,8 +78,8 @@
                 android:layout_below="@id/imageView"
                 android:layout_marginStart="5dp"
                 android:layout_marginEnd="5dp"
-                android:layout_toEndOf="@id/year_text"
-                android:text="2 hours, 10 minutes"
+                android:layout_toEndOf="@id/first_air_year"
+                android:text="8 Sezon "
                 android:textSize="20sp">
 
             </TextView>
@@ -125,75 +125,65 @@
 
             </TextView>
 
-            <LinearLayout
-                android:id="@+id/titleLayout"
+
+
+                <TextView
+                    android:id="@+id/creatorText"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="5dp"
+                    android:layout_marginEnd="5dp"
+                    android:layout_marginTop="10dp"
+                    android:layout_below="@id/vote_text"
+                    android:text="@string/creator"
+                    android:textSize="18sp"
+                    android:textStyle="bold">
+
+                </TextView>
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/creatorRecyclerView"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="5dp"
+                    android:layout_marginEnd="5dp"
+                    android:layout_below="@id/creatorText">
+
+                </androidx.recyclerview.widget.RecyclerView>
+
+
+
+            <TextView
+                android:id="@+id/seasons_text"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_below="@id/ratingBar"
+                android:layout_below="@id/creatorRecyclerView"
+                android:layout_marginStart="5dp"
                 android:layout_marginTop="10dp"
-                android:orientation="horizontal">
+                android:layout_marginEnd="5dp"
+                android:text="@string/seasons"
+                android:textSize="20sp"
+                android:textStyle="bold">
 
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="5dp"
-                    android:layout_marginEnd="5dp"
-                    android:layout_weight="1"
-                    android:text="@string/directors"
-                    android:textSize="18sp"
-                    android:textStyle="bold">
+            </TextView>
 
-                </TextView>
-
-                <TextView
-
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="5dp"
-                    android:layout_marginEnd="5dp"
-                    android:layout_weight="1"
-                    android:text="@string/producers"
-                    android:textSize="18sp"
-                    android:textStyle="bold">
-
-                </TextView>
-
-            </LinearLayout>
-
-            <LinearLayout
-                android:id="@+id/recyclerViews_layout"
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/seasonsRecyclerView"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_below="@id/titleLayout"
-                android:orientation="horizontal">
+                android:layout_below="@id/seasons_text"
+                android:layout_marginStart="5dp"
+                android:layout_marginTop="5dp"
+                android:layout_marginEnd="5dp"
+                android:layout_marginBottom="5dp">
 
-                <androidx.recyclerview.widget.RecyclerView
-                    android:id="@+id/directorRecyclerView"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="5dp"
-                    android:layout_marginEnd="5dp"
-                    android:layout_weight="1">
-
-                </androidx.recyclerview.widget.RecyclerView>
-
-                <androidx.recyclerview.widget.RecyclerView
-                    android:id="@+id/producerRecyclerView"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="5dp"
-                    android:layout_marginEnd="5dp"
-                    android:layout_weight="1">
-
-                </androidx.recyclerview.widget.RecyclerView>
-
-            </LinearLayout>
+            </androidx.recyclerview.widget.RecyclerView>
 
             <TextView
                 android:id="@+id/cast_text"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_below="@id/recyclerViews_layout"
+                android:layout_below="@id/seasonsRecyclerView"
                 android:layout_marginStart="5dp"
                 android:layout_marginTop="10dp"
                 android:layout_marginEnd="5dp"

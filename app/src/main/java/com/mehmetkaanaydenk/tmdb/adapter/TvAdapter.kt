@@ -2,12 +2,14 @@ package com.mehmetkaanaydenk.tmdb.adapter
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import androidx.navigation.findNavController
 import androidx.recyclerview.widget.RecyclerView
 import com.mehmetkaanaydenk.tmdb.databinding.TvFragmentRecyclerRowBinding
 import com.mehmetkaanaydenk.tmdb.model.ResultTv
 import com.mehmetkaanaydenk.tmdb.model.Tv
 import com.mehmetkaanaydenk.tmdb.util.downloadUrl
 import com.mehmetkaanaydenk.tmdb.util.placeHolderProgressBar
+import com.mehmetkaanaydenk.tmdb.view.TvseriesFragmentDirections
 
 class TvAdapter(val tvList: List<ResultTv>) : RecyclerView.Adapter<TvAdapter.TvHolder>() {
 
@@ -36,5 +38,13 @@ class TvAdapter(val tvList: List<ResultTv>) : RecyclerView.Adapter<TvAdapter.TvH
             placeHolderProgressBar(holder.itemView.context)
         )
         holder.binding.tvOverviewText.text = tvList[position].overview
+
+        holder.itemView.setOnClickListener {
+
+            val action = TvseriesFragmentDirections.actionTvseriesFragmentToTvDetailsFragment(tvList[position].id)
+            it.findNavController().navigate(action)
+
+        }
+
     }
 }

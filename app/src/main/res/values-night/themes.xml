@@ -28,4 +28,9 @@
         <item name="colorSurfaceInverse">@color/md_theme_dark_inverseSurface</item>
         <item name="colorPrimaryInverse">@color/md_theme_dark_inversePrimary</item>
     </style>
+
+    <style name="textViewBorder">
+        <item name="android:background">@drawable/textview_border_night</item>
+    </style>
+
 </resources>

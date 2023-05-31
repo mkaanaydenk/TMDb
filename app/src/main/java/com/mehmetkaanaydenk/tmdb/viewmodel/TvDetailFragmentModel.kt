@@ -4,51 +4,50 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.mehmetkaanaydenk.tmdb.model.Cast
 import com.mehmetkaanaydenk.tmdb.model.Credit
-import com.mehmetkaanaydenk.tmdb.model.Crew
-import com.mehmetkaanaydenk.tmdb.model.MovieDetail
+import com.mehmetkaanaydenk.tmdb.model.Season
+import com.mehmetkaanaydenk.tmdb.model.TvDetail
 import com.mehmetkaanaydenk.tmdb.model.Video
-import com.mehmetkaanaydenk.tmdb.model.Videos
 import com.mehmetkaanaydenk.tmdb.service.MovieAPIService
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.CompositeDisposable
 import io.reactivex.observers.DisposableSingleObserver
 import io.reactivex.schedulers.Schedulers
 
-class MovieDetailFragmentModel : ViewModel() {
+class TvDetailFragmentModel : ViewModel() {
 
     private val disposable = CompositeDisposable()
     private val movieAPIService = MovieAPIService()
 
-    val movieId = MutableLiveData<Int>()
+    private val tvId = MutableLiveData<Int>()
 
-    val movieDetail = MutableLiveData<MovieDetail>()
+    val tvDetail = MutableLiveData<TvDetail>()
 
     val castList = MutableLiveData<List<Cast>>()
 
-    val directorList = MutableLiveData<List<Crew>>()
-
-    val producerList = MutableLiveData<List<Crew>>()
-
     val trailerList = MutableLiveData<List<Video>>()
 
-    fun setMovieId(id: Int) {
+    val seasonList = MutableLiveData<List<Season>>()
 
-        movieId.value = id
+    fun setTvId(id: Int) {
+
+        tvId.value = id
 
     }
 
-    fun getMovieDetails() {
+    fun getTvDetail() {
 
         disposable.add(
-
-            movieAPIService.getMovieDetail(movieId.value!!)
+            movieAPIService.getTvDetail(tvId.value!!)
                 .subscribeOn(Schedulers.newThread())
                 .observeOn(AndroidSchedulers.mainThread())
-                .subscribeWith(object : DisposableSingleObserver<MovieDetail>() {
-                    override fun onSuccess(t: MovieDetail) {
-                        movieDetail.value = t
+                .subscribeWith(object : DisposableSingleObserver<TvDetail>() {
+                    override fun onSuccess(t: TvDetail) {
+                        tvDetail.value = t
+
                         val videos = t.videos.videos.filter { it.site == "YouTube" }
+
                         trailerList.value = videos
+                        seasonList.value = t.seasons
                     }
 
                     override fun onError(e: Throwable) {
@@ -57,20 +56,15 @@ class MovieDetailFragmentModel : ViewModel() {
 
 
                 })
-
         )
 
         disposable.add(
-            movieAPIService.getMovieCredit(movieId.value!!)
+
+            movieAPIService.getTvCredit(tvId.value!!)
                 .subscribeOn(Schedulers.newThread())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribeWith(object : DisposableSingleObserver<Credit>() {
                     override fun onSuccess(t: Credit) {
-
-                        val directors = t.crew.filter { it.job == "Director" }
-                        val producers = t.crew.filter { it.job == "Producer" }
-                        directorList.value = directors
-                        producerList.value = producers
                         castList.value = t.cast
                     }
 
@@ -80,7 +74,9 @@ class MovieDetailFragmentModel : ViewModel() {
 
 
                 })
+
         )
+
 
     }
 

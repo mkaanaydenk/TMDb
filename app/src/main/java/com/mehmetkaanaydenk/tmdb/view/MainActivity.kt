@@ -28,7 +28,7 @@ class MainActivity : AppCompatActivity() {
 
         navController.addOnDestinationChangedListener { controller, destination, arguments ->
 
-            if (destination.id == R.id.detailsFragment) {
+            if (destination.id == R.id.detailsFragment || destination.id == R.id.tvDetailsFragment) {
                 bottomNavigationView.visibility = View.GONE
                 binding.topAppBar.navigationIcon =
                     AppCompatResources.getDrawable(this, R.drawable.baseline_arrow_back_ios_24)

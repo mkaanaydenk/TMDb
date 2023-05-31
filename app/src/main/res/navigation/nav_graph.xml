@@ -33,6 +33,9 @@
         <action
             android:id="@+id/action_searchFragment_to_detailsFragment"
             app:destination="@id/detailsFragment" />
+        <action
+            android:id="@+id/action_searchFragment_to_tvDetailsFragment"
+            app:destination="@id/tvDetailsFragment" />
     </fragment>
     <fragment
         android:id="@+id/moviesFragment"
@@ -47,10 +50,23 @@
         android:id="@+id/tvseriesFragment"
         android:name="com.mehmetkaanaydenk.tmdb.view.TvseriesFragment"
         android:label="fragment_tvseries"
-        tools:layout="@layout/fragment_tvseries" />
+        tools:layout="@layout/fragment_tvseries" >
+        <action
+            android:id="@+id/action_tvseriesFragment_to_tvDetailsFragment"
+            app:destination="@id/tvDetailsFragment" />
+    </fragment>
     <fragment
         android:id="@+id/aboutFragment"
         android:name="com.mehmetkaanaydenk.tmdb.view.AboutFragment"
         android:label="fragment_about"
         tools:layout="@layout/fragment_about" />
+    <fragment
+        android:id="@+id/tvDetailsFragment"
+        android:name="com.mehmetkaanaydenk.tmdb.view.TvDetailsFragment"
+        android:label="fragment_tv_details"
+        tools:layout="@layout/fragment_tv_details" >
+        <argument
+            android:name="tvId"
+            app:argType="integer" />
+    </fragment>
 </navigation>

@@ -129,10 +129,17 @@ class DetailsFragment : Fragment() {
 
         viewModel.trailerList.observe(viewLifecycleOwner) {
 
-            trailerAdapter = DetailTrailerAdapter(it)
-            val manager: RecyclerView.LayoutManager = LinearLayoutManager(context)
-            binding.trailerRecyclerView.layoutManager = manager
-            binding.trailerRecyclerView.adapter = trailerAdapter
+            if (it.isNotEmpty()) {
+                binding.trailerText.visibility = View.VISIBLE
+                binding.trailerRecyclerView.visibility = View.VISIBLE
+                trailerAdapter = DetailTrailerAdapter(it)
+                val manager: RecyclerView.LayoutManager = LinearLayoutManager(context)
+                binding.trailerRecyclerView.layoutManager = manager
+                binding.trailerRecyclerView.adapter = trailerAdapter
+            } else {
+                binding.trailerText.visibility = View.GONE
+                binding.trailerRecyclerView.visibility = View.GONE
+            }
 
         }
 

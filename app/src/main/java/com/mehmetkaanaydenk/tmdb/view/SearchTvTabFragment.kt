@@ -33,14 +33,14 @@ class SearchTvTabFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        _binding = FragmentSearchTvTabBinding.inflate(inflater,container,false)
+        _binding = FragmentSearchTvTabBinding.inflate(inflater, container, false)
         val view = binding.root
         return view
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        viewModel.query.observe(viewLifecycleOwner){
+        viewModel.query.observe(viewLifecycleOwner) {
 
             viewModel.getTv(it)
             observeData()
@@ -49,36 +49,41 @@ class SearchTvTabFragment : Fragment() {
 
     }
 
-    private fun observeData(){
+    private fun observeData() {
 
-        viewModel.tvSeries.observe(viewLifecycleOwner){
+        viewModel.tvSeries.observe(viewLifecycleOwner) {
 
             adapter = SearchTvAdapter(it)
             val manager: RecyclerView.LayoutManager = LinearLayoutManager(context)
             binding.tvTabRecyclerView.layoutManager = manager
             binding.tvTabRecyclerView.adapter = adapter
+            binding.tvTabRecyclerView.visibility = View.VISIBLE
 
         }
-        viewModel.tvLoading.observe(viewLifecycleOwner){
-            if (it){
+        viewModel.tvLoading.observe(viewLifecycleOwner) {
+            if (it) {
                 binding.tvProgressBar.visibility = View.VISIBLE
-            }else{
+            } else {
                 binding.tvProgressBar.visibility = View.GONE
             }
         }
-        viewModel.tvNotFound.observe(viewLifecycleOwner){
-            if (it){
+        viewModel.tvNotFound.observe(viewLifecycleOwner) {
+            if (it) {
                 binding.tvTabNotFoundText.visibility = View.VISIBLE
-            }else{
+                binding.tvTabRecyclerView.visibility = View.GONE
+            } else {
                 binding.tvTabNotFoundText.visibility = View.GONE
+                binding.tvTabRecyclerView.visibility = View.VISIBLE
             }
         }
-        viewModel.tvError.observe(viewLifecycleOwner){
+        viewModel.tvError.observe(viewLifecycleOwner) {
 
-            if (it){
+            if (it) {
                 binding.tvTabErrorText.visibility = View.VISIBLE
-            }else{
+                binding.tvTabRecyclerView.visibility = View.GONE
+            } else {
                 binding.tvTabErrorText.visibility = View.GONE
+                binding.tvTabRecyclerView.visibility = View.VISIBLE
             }
 
         }
