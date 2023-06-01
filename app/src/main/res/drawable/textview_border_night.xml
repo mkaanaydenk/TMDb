@@ -14,4 +14,8 @@
 
     </stroke>
 
+    <corners android:radius="7dp">
+
+    </corners>
+
 </shape>

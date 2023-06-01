@@ -33,6 +33,7 @@
     <string name="seasons">Sezon(lar)</string>
     <string name="season">&#160;Sezon</string>
     <string name="episodes">&#160;Bölüm</string>
+    <string name="minute">&#160;dk.</string>
 
     <string name="popularity_asc">Popülerlik (En Düşük)</string>
     <string name="popularity_desc">Popülerlik (En Yüksek)</string>

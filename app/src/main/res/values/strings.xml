@@ -33,6 +33,7 @@
     <string name="seasons">Season(s)</string>
     <string name="season">&#160;Season</string>
     <string name="episodes">&#160;Episodes</string>
+    <string name="minute">&#160;minutes</string>
 
 
     <string name="popularity_asc">Popularity (Ascending)</string>

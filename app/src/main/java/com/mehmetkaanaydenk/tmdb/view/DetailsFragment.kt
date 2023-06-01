@@ -91,7 +91,8 @@ class DetailsFragment : Fragment() {
             )
             binding.genreText.text = it.genres[0].name
             binding.yearText.text = it.releaseDate.take(4)
-            binding.durationText.text = it.runtime.toString()
+            val duration = it.runtime.toString() + getString(R.string.minute)
+            binding.durationText.text = duration
             binding.overviewText.text = it.overview
             binding.ratingBar.numStars = it.voteAverage.toInt()
             binding.ratingBar.rating = it.voteAverage.toFloat()
