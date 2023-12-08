@@ -19,7 +19,7 @@
 
 ## Built With
 
-MVVM, Live Data, Retrofit, RxJava, View Binding, Glide, Navigation, Extensions, Material Design
+MVVM, LiveData, Retrofit, RxJava, View Binding, Glide, Navigation, Extensions, Material Design
 
 
 
